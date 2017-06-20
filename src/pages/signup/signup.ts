@@ -5,7 +5,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {matchingPasswords} from '../../validators/confirmpass';
 import 'rxjs/add/operator/map';
 import {Http, Headers} from '@angular/http';
-import {LoginPage} from '../login/login';
 import {OtpPage} from '../otp/otp'
 import {AppVersion} from '@ionic-native/app-version'
 
@@ -79,7 +78,7 @@ showData()
         console.log(res);
         if(res.status === 'Success')
         {
-          console.log("pushing");
+          alert("pushing");
           this.navCtrl.push(OtpPage,{
             phone: this.oneform.get('Phone').value,
             accountType: this.oneform.get('accountType').value,

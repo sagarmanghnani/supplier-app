@@ -13,6 +13,11 @@ import { HttpModule } from '@angular/http';
 import {OtpPage} from '../pages/otp/otp';
 import {ProfileInfoPage} from '../pages/profile-info/profile-info';
 import {AppVersion} from '@ionic-native/app-version';
+import {Camera} from '@ionic-native/camera';
+import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
+import { FileChooser } from '@ionic-native/file-chooser';
+import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +49,9 @@ import {AppVersion} from '@ionic-native/app-version';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
     AppVersion,
-
+    Camera,
+    Transfer,
+    FileChooser,    
   ]
 })
 export class AppModule {}

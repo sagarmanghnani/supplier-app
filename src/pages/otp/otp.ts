@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Http, Headers} from '@angular/http';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ProfileInfoPage} from '../profile-info/profile-info';
 
 
 /**
@@ -45,13 +46,16 @@ accountType:any = this.navParams.get('accountType');
     
     console.log("otp value is" + this.otp.get('otps').value);
 
-    this.http.post('http://localhost/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
-      if(res.status === 'Success')
+    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=getOtp',data,headers).map(res => res.json()).subscribe(res => {
+      if(res.status == 'Success')
       {
-      console.log('successfully entered login details' + res.msg);
+        alert(res.status);
+        this.navCtrl.push(ProfileInfoPage, {
+          phones:this.phone
+        });
     }
     else{
-      console.log(res.msg);
+      alert(res.msg);
     }
     
     },

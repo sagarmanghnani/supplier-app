@@ -14,5 +14,12 @@
 
 
 <ion-content padding>
-<button ion-button round>upload photo</button>  
+<ion-card>
+<ion-grid>
+  <ion-row col-6>
+     <ion-icon name="person"></ion-icon>
+  </ion-row>
+<button ion-button round (click) = "presentActionSheet()">Select image</button>
+</ion-grid>
+</ion-card>  
 </ion-content>
