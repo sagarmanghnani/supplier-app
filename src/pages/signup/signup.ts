@@ -39,7 +39,6 @@ error: string;
         name:['', Validators.required],
         confirm:['', Validators.required],
         Phone:['', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.required])],
-        accountType:['', Validators.required],
       },
       {
         validator: matchingPasswords('password', 'confirm')
@@ -70,7 +69,7 @@ showData()
         name:this.oneform.get('name').value,
         Phone:this.oneform.get('Phone').value,
         password:this.oneform.get('password').value,
-        accountType: this.oneform.get('accountType').value,
+        accountType: "Supplier",
         appversion:s,
   });
       this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=checkList', data, headers).map(res=>res.json()).subscribe(res=>
@@ -81,7 +80,7 @@ showData()
           alert("pushing");
           this.navCtrl.push(OtpPage,{
             phone: this.oneform.get('Phone').value,
-            accountType: this.oneform.get('accountType').value,
+            accountType: "Supplier",
           })
         }
         else

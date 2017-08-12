@@ -1,0 +1,60 @@
+<!--
+  Generated template for the RequestDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>requestDetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+  <ion-card>
+    <br>
+  <ion-row offset-6>
+    Requirement Details
+  </ion-row>
+  <br>
+  <ion-col ion-item>
+    <h1>{{requirement.Title}}</h1>
+  </ion-col>
+  <br>
+  <ion-col ion-item>
+    <h4>Description :- {{requirement.description}}</h4>
+  </ion-col>
+  <br>
+  <ion-col ion-item>
+      price range :- {{minrange}} - {{maxrange}}
+  </ion-col>
+  <br>
+  <ion-col ion-item>
+    product type :- {{requirement.productType}}
+  </ion-col>
+<br>
+  <ion-col ion-item>
+    Model number :- {{requirement.modelNo}}
+  </ion-col>
+<br>
+  <ion-col ion-item>
+    color :- {{requirement.colorPreference}}
+  </ion-col>
+  <br>
+  <ion-col ion-item>
+    Quantity :- {{requirement.quantity}}
+  </ion-col>
+  <br>
+  <ion-col offset-9>
+    {{requirement.modifiedDate}}
+  </ion-col>
+  </ion-card>
+ 
+  <button ion-button right round (click) = "bidDetails()">Bid</button>
+</ion-grid>
+
+</ion-content>

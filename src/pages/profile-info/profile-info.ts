@@ -4,6 +4,7 @@ import {Http,Headers} from '@angular/http';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { ActionSheetController } from 'ionic-angular';
+import {SupplierInfoPage} from '../supplier-info/supplier-info'
 
 /**
  * Generated class for the ProfileInfoPage page.
@@ -20,12 +21,18 @@ export class ProfileInfoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http, public camera: Camera, public transfer:Transfer, public actionSheetCtrl:ActionSheetController) {
   }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfileInfoPage');
   }
   
-  
+  boolcheck:boolean;
   phone:any = this.navParams.get('phones');
+    profileImage:any;
+  accountType:any = this.navParams.get('accountType');
+  currentDate: string = (new Date()).toLocaleDateString();
+  currentTime: string = (new Date()).toLocaleTimeString();
+  dateTime:any = (new Date()).toJSON();
   Cameraupload()
   {
     const options: CameraOptions = {
@@ -54,7 +61,6 @@ export class ProfileInfoPage {
    deploy(check)
    {
      alert(this.phone);
-        
      var ops;
      if(check == 1)
      {
@@ -74,12 +80,13 @@ export class ProfileInfoPage {
 
        let option1: FileUploadOptions = {
          fileKey:'file',
-         fileName: this.phone +'.jpeg',
+         fileName: '.jpeg',
          headers: {},
          mimeType: "multipart/form-data",
          httpMethod: 'POST',
          params: {
            phone: JSON.stringify(this.phone),
+           accountType:JSON.stringify(this.accountType),
          }
         }
         
@@ -87,6 +94,15 @@ export class ProfileInfoPage {
           alert(data.response);
           var key = Object.keys(data);
           alert(key);
+           var save = JSON.parse(data.response);
+
+           if(save.status == 'Success')
+          {
+            this.boolcheck = true;
+            alert(save.profileImage);
+          this.profileImage = "http://10.0.2.2/signup-API/" + save.profileImage;
+          }
+          /*this.navCtrl.push(SupplierInfoPage);*/
         },
         (err) =>{
           alert('failed');
@@ -97,7 +113,7 @@ export class ProfileInfoPage {
      (err)=>{
         alert("failed");
      }
-
+     
        );
       
   }
@@ -130,6 +146,11 @@ export class ProfileInfoPage {
       ]
     });
     actionSheet.present();
+  }
+
+  skip()
+  {
+    this.navCtrl.push(SupplierInfoPage);
   }
 }
 

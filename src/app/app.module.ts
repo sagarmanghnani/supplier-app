@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {SignupPage} from '../pages/signup/signup'
@@ -17,8 +16,15 @@ import {Camera} from '@ionic-native/camera';
 import { Transfer, FileUploadOptions, TransferObject } from '@ionic-native/transfer';
 import { FileChooser } from '@ionic-native/file-chooser';
 import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
-
-
+import {SupplierInfoPage} from '../pages/supplier-info/supplier-info';
+import {FilePath} from '@ionic-native/file-path';
+import {CategoryPage} from '../pages/category/category';
+import {ShowRequestsPage} from '../pages/show-requests/show-requests';
+import {RequestDetailsPage} from '../pages/request-details/request-details';
+import {DashboardPage} from '../pages/dashboard/dashboard';
+import {ForgotPage} from '../pages/forgot/forgot';
+import {ForgotpassPage} from '../pages/forgotpass/forgotpass';
+import {BiddingPage} from '../pages/bidding/bidding';
 @NgModule({
   declarations: [
     MyApp,
@@ -27,6 +33,14 @@ import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
     LoginPage,
     OtpPage,
     ProfileInfoPage,  
+    SupplierInfoPage,
+    CategoryPage,
+    ShowRequestsPage,
+    RequestDetailsPage,
+    DashboardPage,
+    ForgotPage,
+    ForgotpassPage,
+    BiddingPage,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +56,14 @@ import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
     LoginPage,
     OtpPage,
     ProfileInfoPage,
+    SupplierInfoPage,
+    CategoryPage,
+    ShowRequestsPage,
+    RequestDetailsPage,
+    DashboardPage,
+     ForgotPage,
+    ForgotpassPage,
+    BiddingPage,
   ],
   providers: [
     StatusBar,
@@ -51,7 +73,8 @@ import {ActionSheet, ActionSheetOptions} from '@ionic-native/action-sheet';
     AppVersion,
     Camera,
     Transfer,
-    FileChooser,    
+    FileChooser,
+    FilePath,    
   ]
 })
 export class AppModule {}

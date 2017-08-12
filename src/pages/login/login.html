@@ -20,13 +20,6 @@
   </ion-item>
   <form [formGroup] = "loginform">
   <ion-item>
-         <ion-label>Account Type</ion-label>
-         <ion-select formControlName="accountType">
-            <ion-option value="Consumer">Consumer</ion-option>
-            <ion-option value="Supplier">Supplier</ion-option>
-         </ion-select>
-       </ion-item>
-  <ion-item>
     <ion-label floating>Email / Mobile Number</ion-label>
     <ion-input type="text" formControlName = "username" ></ion-input>
   </ion-item>
@@ -51,7 +44,10 @@
   <br>
   <ion-item>
     
-    <a href="">Forgot Password</a>
+    <a (click) = "push()">Forgot Password</a>
   </ion-item>
+  <div style="margin-top:20px;">
+      Don't have an account yet? <a (click) = "signup()">Sign Up.</a>
+    </div>
 </ion-list>
 </ion-content>
