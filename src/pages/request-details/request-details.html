@@ -53,8 +53,13 @@
     {{requirement.modifiedDate}}
   </ion-col>
   </ion-card>
- 
+<div *ngIf = "!hasBid">
   <button ion-button right round (click) = "bidDetails()">Bid</button>
+</div>
+
+<div *ngIf = "hasBid">
+  <button ion-button right round>Show your Bid</button>
+</div>
 </ion-grid>
 
 </ion-content>

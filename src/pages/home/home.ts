@@ -7,6 +7,7 @@ import {SupplierInfoPage} from '../supplier-info/supplier-info';
 import {CategoryPage} from '../category/category';
 import {ShowRequestsPage} from '../show-requests/show-requests';
 import {BiddingPage} from '../bidding/bidding';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -53,4 +54,6 @@ export class HomePage {
   {
     this.navCtrl.push(BiddingPage);
   }
+
+ 
 }

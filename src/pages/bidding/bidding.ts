@@ -63,7 +63,8 @@ export class BiddingPage {
      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
       alert(res.msg);
      });
-
+     var temp = val +  this.bidDetails.id;
+     this.storage.set(temp,true);
     
   });
   } 

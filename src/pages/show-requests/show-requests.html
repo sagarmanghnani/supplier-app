@@ -18,14 +18,39 @@
 <ion-card>
    <ion-list>
      <button ion-item *ngFor = "let req of request" (click) = "requirementDetail(req)">
-        <ion-col>
-          <ion-icon name="cart" item-start></ion-icon>
-          {{req.Title}}
-        </ion-col>
-        <br>
-        <ion-col offset-9>
-          {{req.modifiedDate}}
-        </ion-col>
+       <ion-row>
+         <ion-col>
+           <h1>{{req.Title}}</h1>
+         </ion-col>
+       </ion-row>
+
+       <ion-row>
+         <ion-col>
+          Quantity:-{{req.quantity}}
+         </ion-col>
+
+          <ion-col>
+            Product Type:- {{req.productType}}
+         </ion-col>
+       </ion-row>
+
+       <ion-row>
+         <ion-col>
+           Company Name:-{{req.companyName}}
+         </ion-col>
+       </ion-row>
+
+       <ion-row>
+          <ion-col>
+            {{req.sub_district}},{{req.district}}, {{req.state}}
+         </ion-col>
+       </ion-row>
+
+       <ion-row>
+         <ion-col>
+          {{req.modifiedDate|date: 'dd/MM/yyyy'}}
+         </ion-col>
+       </ion-row>
      </button>
    </ion-list>
  </ion-card>
