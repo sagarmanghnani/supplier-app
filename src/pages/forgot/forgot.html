@@ -25,7 +25,7 @@
 				<ion-list>
 					<ion-item>
 						<ion-label floating>Enter Email address</ion-label>
-						<ion-input type="email" formControlName="email" [class.invalid] = "!forgot.valid"></ion-input>
+						<ion-input type="email" formControlName="email" [class.invalid] = "!forgot.valid && forgot.controls.email.dirty"></ion-input>
 					</ion-item>
 					<button ion-button round (click) = "forgotPass()">Submit</button>
 				</ion-list>

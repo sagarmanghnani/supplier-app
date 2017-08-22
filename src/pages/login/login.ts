@@ -25,7 +25,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http: Http, public storage:Storage) {
     this.loginform = formBuilder.group({
       username:['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[a-zA-Z]*'), Validators.required])],
+      password: ['', Validators.compose([Validators.minLength(8),Validators.required])],
     })
   }
   error:string;
@@ -43,12 +43,12 @@ postLoginRequest()
       password:this.loginform.get('password').value,
       accountType: "Supplier",
 });
-    this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=logIn', data, headers).map(res=>res.json()).subscribe(res=>
+    this.http.post('http://localhost/signup-API/new1.php?rquest=logIn', data, headers).map(res=>res.json()).subscribe(res=>
     {
       console.log(res.status);
       if(res.status === "Success")
       {
-        alert("login successful");
+        //alert("login successful");
          if(res.status === "Success")
           {
             this.error = res.msg;

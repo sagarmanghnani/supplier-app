@@ -65,11 +65,11 @@ getPortfolio()
   }).then((uri)=>{
     this.filePath.resolveNativePath(uri).then(filePath=>{
       this.show = filePath;
-      alert("corrected path " + this.show);
+      //alert("corrected path " + this.show);
       var lastindex = this.show.lastIndexOf("/");
       var newfile = this.show.slice(lastindex + 1);
       this.upload = newfile;
-      alert(newfile);
+      //alert(newfile);
     })
   })
 }
@@ -85,7 +85,7 @@ sendData()
 {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    alert(this.sid);
+    //alert(this.sid);
     var mata = JSON.stringify({
            gst: this.supplierInfo.get('gst').value,
            cname:this.supplierInfo.get('cname').value,
@@ -98,7 +98,7 @@ sendData()
            accountType: this.accountType,
            supplierServices: this.supplierServices,
     }); 
-    alert(mata); 
+    //alert(mata); 
     const fileTransfer: TransferObject = this.transfer.create();
     let option1: FileUploadOptions = {
          fileKey:'file',
@@ -110,8 +110,8 @@ sendData()
            data:mata,
          }
     }
-    fileTransfer.upload(this.keys, 'http://10.0.2.2/signup-API/new1.php?rquest=supplierInfo',option1).then((data)=>{
-      alert(data.response);
+    fileTransfer.upload(this.keys, 'http://localhost/signup-API/new1.php?rquest=supplierInfo',option1).then((data)=>{
+      //alert(data.response);
       var res = data.response;
         this.navCtrl.push(CategoryPage);
     },

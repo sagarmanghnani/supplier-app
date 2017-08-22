@@ -34,8 +34,7 @@
           <ion-input type="text" formControlName = "address" [class.invalid] = "!supplierInfo.controls.address.valid && (supplierInfo.controls.address.dirty)"></ion-input>
       </ion-item>
       
-      <button ion-button round (click) = "next()">Next</button>
-      <button ion-button round (click) = "prev()">Prev</button>
+      <button ion-button round (click) = "next()" >Next</button>
             </ion-slide>
 
             <ion-slide>
@@ -70,7 +69,7 @@
 	  <br>
 	  <br>
 	  <div>
-		  <button ion-button round (click) = "sendData()" [(disabled)] = "!supplierInfo.controls.complaint.valid">Submit</button>
+		  <button ion-button round (click) = "sendData()" [(disabled)] = "!supplierInfo.valid">Submit</button>
 	  </div>
       </ion-slide>
         </ion-slides>

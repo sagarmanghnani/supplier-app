@@ -41,11 +41,11 @@ email:any = this.navParams.get('email');
     headers.append('Content-Type', 'application/json');
     
       // during forgot password page 
-      alert(this.email);
-      alert(this.pageType);
+      //alert(this.email);
+      //alert(this.pageType);
       if(this.pageType == 'forgot')
       {
-        alert("hello");
+        //alert("hello");
         let data = JSON.stringify({
           email:this.email,
           accountType:this.accountType,
@@ -55,14 +55,14 @@ email:any = this.navParams.get('email');
         this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=verifyOtp', data, headers).map(res=>res.json()).subscribe(res=>{
           if(res.status == 'Success')
           {
-            alert(res.msg + " verify");
+           // alert(res.msg + " verify");
             this.navCtrl.push(ForgotpassPage, {
               email:this.email
             });
           }
           else
           {
-            alert(res.msg + " verify");
+           // alert(res.msg + " verify");
           }
         }, 
         (err)=>{

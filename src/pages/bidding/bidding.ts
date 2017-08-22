@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {Storage} from '@ionic/storage';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Http, Headers} from '@angular/http';
+import {DashboardPage} from '../dashboard/dashboard';
 
 /**
  * Generated class for the BiddingPage page.
@@ -26,16 +27,6 @@ export class BiddingPage {
       biddingTerms: ['', Validators.required]
     });
 
-    var bidval = parseInt(this.bidding.get('bidValue').value);
-    if(bidval > this.maxrange)
-    {
-      let alert = this.alert.create({
-        title : 'Warning!!',
-        subTitle: 'Bid Value you entered is more then the maximum range provided by the consumer for product',
-        buttons: ['OK']
-      });
-      alert.present();
-    }
   }
   // this.bidDetails.id is request id
   supplierId:any;
@@ -54,17 +45,18 @@ export class BiddingPage {
      headers.append('Content-Type', 'application/json');
      // alert message
      let data = JSON.stringify({  
-       requestId: this.bidDetails.id,
+       requestId: this.bidDetails.id1,
        supplierId: val,
        bidValue: this.bidding.get('bidValue').value,
        biddingTerms: this.bidding.get('biddingTerms').value
      });  
-     alert(data);
-     this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
-      alert(res.msg);
+     //alert(data);
+     this.http.post('http://localhost/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
+      //alert(res.msg);
+     
+     this.navCtrl.push(DashboardPage);
      });
-     var temp = val +  this.bidDetails.id;
-     this.storage.set(temp,true);
+     
     
   });
   } 

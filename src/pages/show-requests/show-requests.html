@@ -15,8 +15,7 @@
 
 <ion-content padding>
 
-<ion-card>
-   <ion-list>
+   <ion-list class="lines" *ngIf = "data">
      <button ion-item *ngFor = "let req of request" (click) = "requirementDetail(req)">
        <ion-row>
          <ion-col>
@@ -53,6 +52,9 @@
        </ion-row>
      </button>
    </ion-list>
- </ion-card>
+
+ <div *ngIf = "!data">
+  No request to show
+ </div>
 
 </ion-content>

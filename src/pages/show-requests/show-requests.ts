@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {Http, Headers} from '@angular/http';
 import {RequestDetailsPage} from '../request-details/request-details';
+import {HostrequestPage} from '../hostrequest/hostrequest';
 /**
  * Generated class for the ShowRequestsPage page.
  *
@@ -22,8 +23,9 @@ export class ShowRequestsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage:Storage, public http:Http) {
   }
   request:any;
-  public categoryId:any;
+  categoryId:any;
   public logid:any;
+  data:boolean;
 
   ionViewWillEnter()
 {
@@ -35,42 +37,79 @@ export class ShowRequestsPage {
     console.log('ionViewDidLoad ShowRequestsPage');
   }
 
+  getCategoryId()
+  {
+    //alert(this.logid);
+  }
+
   getLogid()
   {
     this.storage.get('sid').then(val => {
       this.logid = val;
-      this.storage.get(val).then(val => {
-        this.categoryId = val;
-        console.log(val);
+      
          var headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      let data = JSON.stringify({
-        categoryid:this.categoryId
+      let data1 = JSON.stringify({
+        supplierId: this.logid
       });
-      
-      
-      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=supplierRequests', data,headers).map(res => res.json()).subscribe(res =>{
-        if(res.status == 'Success')
+
+      this.http.post('http://localhost/signup-API/new1.php?rquest=supplierCategory', data1,headers).map(res => res.json()).subscribe(res =>{
+        if(res.status = "Success")
         {
-          this.request = res.msg;
+          this.categoryId = res.msg;
+          let data = JSON.stringify({
+          categoryid:this.categoryId
+        });
+        
+        // next post request starts here
+
+            this.http.post('http://localhost/signup-API/new1.php?rquest=supplierRequests', data,headers).map(res => res.json()).subscribe(res =>{
+              
+            if(res.status == 'Success')
+            {
+              var length = Object.keys(res.msg).length;
+              if(length === 0)
+              {
+                this.data = false;
+              }
+              else
+              {
+                this.data = true;
+                this.request = res.msg;
+              }
+            }
+          },
+            (err)=>{
+              alert("connection failed");
+            }
+          );
+
+
+        //ends here
         }
       },
-      (err)=>{
-        alert("connection failed");
-      }
-      );
-        
+      (err)=> {
+        alert("failed to connect");
       })
+
+        
     });
   }
 
   
 
-  requirementDetail(requirement)
+  /*requirementDetail(requirement)
   {
     console.log(requirement);
     this.navCtrl.push(RequestDetailsPage, {
+      reqDet:requirement,
+    });
+  }*/
+
+  requirementDetail(requirement)
+  {
+    this.navCtrl.push(HostrequestPage, {
       reqDet:requirement,
     });
   }

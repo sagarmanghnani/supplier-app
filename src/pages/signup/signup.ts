@@ -6,7 +6,8 @@ import {matchingPasswords} from '../../validators/confirmpass';
 import 'rxjs/add/operator/map';
 import {Http, Headers} from '@angular/http';
 import {OtpPage} from '../otp/otp'
-import {AppVersion} from '@ionic-native/app-version'
+import {AppVersion} from '@ionic-native/app-version';
+import { SMS } from '@ionic-native/sms';
 
 /**
  * Generated class for the SignupPage page.
@@ -27,12 +28,13 @@ export class SignupPage {
  val: boolean;
 submit: boolean = false;
 error: string;
+phone:any;
 
  oneform: FormGroup;
 
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public formBuilder: FormBuilder, public http: Http, public appVersion:AppVersion) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public formBuilder: FormBuilder, public http: Http, public appVersion:AppVersion, public sms:SMS) {
       this.oneform = formBuilder.group({
         password: ['', Validators.compose([Validators.minLength(8), Validators.pattern('[a-zA-Z]*'), Validators.required])],
         Email:['', Validators.email],
@@ -72,16 +74,26 @@ showData()
         accountType: "Supplier",
         appversion:s,
   });
-      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=checkList', data, headers).map(res=>res.json()).subscribe(res=>
+      this.http.post('http://localhost/signup-API/new1.php?rquest=checkList', data, headers).map(res=>res.json()).subscribe(res=>
       {
         console.log(res);
         if(res.status === 'Success')
         {
-          alert("pushing");
+          this.phone = this.oneform.get('Phone').value;
+          //alert(this.phone);
+          this.sms.send(this.phone, res.getotp).then(res=>{
+
+          },
+          (err)=>{
+            alert("failed");
+          });
+          //alert("pushing");
           this.navCtrl.push(OtpPage,{
             phone: this.oneform.get('Phone').value,
             accountType: "Supplier",
-          })
+          });
+          //alert(res.getotp);
+          
         }
         else
         {

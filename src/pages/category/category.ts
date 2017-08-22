@@ -29,6 +29,7 @@ children:any
 pass:any
 logid:any;
 partialUrl:any;
+error:any;
 
 ionViewWillEnter()
 {
@@ -42,7 +43,7 @@ ionViewWillEnter()
   getCategory()
   {
     var arr = new Array();
-    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
+    this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
       this.data = res.msg;
       this.passon = this.data;
 
@@ -67,7 +68,7 @@ ionViewWillEnter()
       }
       arr.sort(compare);
       this.show = arr;
-      this.partialUrl = "http://10.0.2.2/signup-API/";
+      this.partialUrl = "http://localhost/signup-API/";
     },
     (err)=>{
       alert("failed");
@@ -97,8 +98,28 @@ ionViewWillEnter()
 
   showing(passid)
   {
-   this.storage.set(this.logid, passid);
-   this.navCtrl.push(DashboardPage);
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    let data = JSON.stringify({
+      supplierId: this.logid,
+      categoryId:passid,
+    });
+    //alert(data);
+   this.http.post('http://localhost/signup-API/new1.php?rquest=updateSuppCategory', data, headers).map(res=>res.json()).subscribe(res=>
+    {
+      if(res.status == "Success")
+      {
+        this.navCtrl.push(DashboardPage);
+      }
+      else
+      {
+        this.error = res.msg;
+        alert(this.error);
+      }
+
+    });
+   //
   }
   
 }

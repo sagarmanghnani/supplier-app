@@ -7,7 +7,8 @@ import {SupplierInfoPage} from '../supplier-info/supplier-info';
 import {CategoryPage} from '../category/category';
 import {ShowRequestsPage} from '../show-requests/show-requests';
 import {BiddingPage} from '../bidding/bidding';
-
+import {DeletePage} from '../delete/delete';
+import {HostrequestPage} from '../hostrequest/hostrequest';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -53,6 +54,16 @@ export class HomePage {
   bidding()
   {
     this.navCtrl.push(BiddingPage);
+  }
+
+  delete()
+  {
+    this.navCtrl.push(DeletePage);
+  }
+
+  hostrequest()
+  {
+    this.navCtrl.push(HostrequestPage);
   }
 
  

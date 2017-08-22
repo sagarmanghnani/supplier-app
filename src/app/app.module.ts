@@ -25,6 +25,11 @@ import {DashboardPage} from '../pages/dashboard/dashboard';
 import {ForgotPage} from '../pages/forgot/forgot';
 import {ForgotpassPage} from '../pages/forgotpass/forgotpass';
 import {BiddingPage} from '../pages/bidding/bidding';
+import {DeletePage} from '../pages/delete/delete';
+import {HostrequestPage} from '../pages/hostrequest/hostrequest';
+import {ShowbidsPage} from '../pages/showbids/showbids';
+import {ConsumerPage} from '../pages/consumer/consumer';
+import { SMS } from '@ionic-native/sms';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,6 +46,10 @@ import {BiddingPage} from '../pages/bidding/bidding';
     ForgotPage,
     ForgotpassPage,
     BiddingPage,
+    DeletePage,
+    HostrequestPage,
+    ShowbidsPage,
+    ConsumerPage,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +73,12 @@ import {BiddingPage} from '../pages/bidding/bidding';
      ForgotPage,
     ForgotpassPage,
     BiddingPage,
+    DeletePage,
+    HostrequestPage,
+    ShowbidsPage,
+    ConsumerPage,
   ],
+
   providers: [
     StatusBar,
     SplashScreen,
@@ -74,7 +88,8 @@ import {BiddingPage} from '../pages/bidding/bidding';
     Camera,
     Transfer,
     FileChooser,
-    FilePath,    
+    FilePath,
+    SMS    
   ]
 })
 export class AppModule {}

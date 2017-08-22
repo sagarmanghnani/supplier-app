@@ -39,6 +39,10 @@
           <ion-input type="password" formControlName = "password" [class.invalid] = "!oneform.controls.password.valid && (oneform.controls.password.dirty || submit)"></ion-input>
         </ion-item>
         
+        <div *ngIf = "oneform.controls.password.dirty && !oneform.controls.password.valid">
+          Password must be of atleast 8 digit
+        </div>
+
          <ion-item>
             <ion-label floating> Confirm Password</ion-label>
             <ion-input type="password" formControlName = "confirm" [class.invalid] = "oneform.controls.confirm.dirty && !oneform.controls.confirm.valid"></ion-input>
