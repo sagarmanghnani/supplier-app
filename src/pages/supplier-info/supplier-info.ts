@@ -110,7 +110,7 @@ sendData()
            data:mata,
          }
     }
-    fileTransfer.upload(this.keys, 'http://localhost/signup-API/new1.php?rquest=supplierInfo',option1).then((data)=>{
+    fileTransfer.upload(this.keys, 'http://10.0.2.2/signup-API/new1.php?rquest=supplierInfo',option1).then((data)=>{
       //alert(data.response);
       var res = data.response;
         this.navCtrl.push(CategoryPage);

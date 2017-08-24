@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProfileInfoPage} from '../profile-info/profile-info';
 import {ForgotpassPage} from '../forgotpass/forgotpass';
 import {Storage} from '@ionic/storage';
+import { SMS } from '@ionic-native/sms';
+
 
 /**
  * Generated class for the OtpPage page.
@@ -21,7 +23,13 @@ import {Storage} from '@ionic/storage';
 export class OtpPage {
 otp:FormGroup
 appNumber: any
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder, public storage:Storage) {
+  constructor(public navCtrl: NavController,
+   public navParams: NavParams,
+    public http: Http,
+     public formBuilder: FormBuilder,
+      public storage:Storage,
+      public sms:SMS,
+      ) {
     this.otp = formBuilder.group({
         otps: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(5)])],
     })
@@ -101,7 +109,29 @@ email:any = this.navParams.get('email');
         }
         )
   }
-  }
+}
+
+resendOtp()
+{
+   var headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  
+  let data = JSON.stringify({
+    phone:this.phone,
+  });
+  
+  this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=resendOtp',data,headers).map(res => res.json()).subscribe(res => {
+    if(res.status == 'Success')
+    {
+      console.log(res.msg);
+      this.sms.send(this.phone, res.msg);
+    }
+    else
+    {
+      alert(res.msg);
+    }
+  });
+}
 }
 
 

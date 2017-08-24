@@ -61,7 +61,7 @@ export class RequestDetailsPage {
     requestId:this.requestId,
   });
   //alert(data);
-  this.http.post('http://localhost/signup-API/new1.php?rquest=checkBid', data,headers).map(res => res.json()).subscribe(res =>{
+  this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=checkBid', data,headers).map(res => res.json()).subscribe(res =>{
     //alert(res.status);
     if(res.status == 'Bided')
     {

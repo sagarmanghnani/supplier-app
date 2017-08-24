@@ -74,7 +74,7 @@ showData()
         accountType: "Supplier",
         appversion:s,
   });
-      this.http.post('http://localhost/signup-API/new1.php?rquest=checkList', data, headers).map(res=>res.json()).subscribe(res=>
+      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=checkList', data, headers).map(res=>res.json()).subscribe(res=>
       {
         console.log(res);
         if(res.status === 'Success')

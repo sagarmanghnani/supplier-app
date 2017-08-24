@@ -51,9 +51,9 @@ export class BiddingPage {
        biddingTerms: this.bidding.get('biddingTerms').value
      });  
      //alert(data);
-     this.http.post('http://localhost/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
-      //alert(res.msg);
-     
+     this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
+      alert(res.msg);
+      alert(res.status);
      this.navCtrl.push(DashboardPage);
      });
      

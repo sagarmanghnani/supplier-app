@@ -43,7 +43,7 @@ ionViewWillEnter()
   getCategory()
   {
     var arr = new Array();
-    this.http.get('http://localhost/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
+    this.http.get('http://10.0.2.2/signup-API/new1.php?rquest=showCategory').map(res => res.json()).subscribe(res =>{
       this.data = res.msg;
       this.passon = this.data;
 
@@ -68,7 +68,7 @@ ionViewWillEnter()
       }
       arr.sort(compare);
       this.show = arr;
-      this.partialUrl = "http://localhost/signup-API/";
+      this.partialUrl = "http://10.0.2.2/signup-API/";
     },
     (err)=>{
       alert("failed");
@@ -106,7 +106,7 @@ ionViewWillEnter()
       categoryId:passid,
     });
     //alert(data);
-   this.http.post('http://localhost/signup-API/new1.php?rquest=updateSuppCategory', data, headers).map(res=>res.json()).subscribe(res=>
+   this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=updateSuppCategory', data, headers).map(res=>res.json()).subscribe(res=>
     {
       if(res.status == "Success")
       {
