@@ -16,6 +16,7 @@ import {OtpPage} from '../otp/otp'
 })
 export class ForgotPage {
 forgot: FormGroup;
+error: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public http:Http) {
     this.forgot = formBuilder.group({
       email:['',Validators.compose([Validators.required, Validators.email])],
@@ -38,7 +39,7 @@ forgot: FormGroup;
 
      //alert(sata);
 
-     this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=forgotPass', sata, headers).map(res=>res.json()).subscribe(res=>{
+     this.http.post('http://localhost/signup-API/new1.php?rquest=forgotPass', sata, headers).map(res=>res.json()).subscribe(res=>{
        if(res.status == 'Success')
        {
          //alert(res.msg);
@@ -51,7 +52,7 @@ forgot: FormGroup;
      }
      else
      {
-       alert(res.msg);
+       this.error = res.msg;
      }
      },
      (err)=>{

@@ -2,4 +2,10 @@ page-show-requests {
     .lines{
         border-bottom: 0.5px;
     }
+    .approved{
+        border-left: solid 5px lightgreen;
+    }
+    .reject{
+        border-left: solid 5px orangered;
+    }
 }

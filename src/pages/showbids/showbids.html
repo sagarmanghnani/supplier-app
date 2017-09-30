@@ -15,14 +15,21 @@
 
 <ion-content padding>
 
+<div *ngIf = "bidvalue || bidterms">
 <ion-list>
-  <ion-item>
+  <ion-item text-wrap>
    Bid Values :- {{bidvalue}}
   </ion-item>
 
-  <ion-item>
+  <ion-item text-wrap>
    Bid Terms:- {{bidterms}}
+   
   </ion-item>
 </ion-list>
-<button ion-button round (click) = "deleteBid()">Delete Bid</button>
+<button *ngIf = "bidData.status != 1" ion-button round (click) = "deleteBid()">Delete Bid</button>
+</div>
+
+<div *ngIf = "!bidvalue && !bidterms">
+  Bidding is not performed yet
+</div>
 </ion-content>

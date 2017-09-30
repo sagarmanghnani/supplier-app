@@ -39,9 +39,9 @@ sid:any;
       gst: ['', Validators.compose([Validators.required, Validators.maxLength(15), Validators.minLength(15)])],
       cname:['', Validators.required],
       address:['', Validators.required],
-      vlink:['', Validators.required],
-      portfolio:['',Validators.compose([Validators.required, Validators.pattern('([a-zA-Z0-9\s_\\.\-:])+(.doc|.docx|.pdf|.jpg)$')])],
-      website:['',Validators.required],
+      vlink:'',
+      portfolio:'',
+      website:'',
       complaint:['', Validators.compose([Validators.required, Validators.maxLength(10), Validators.minLength(10)])],
     })
   }
@@ -97,8 +97,37 @@ sendData()
            id:this.sid,
            accountType: this.accountType,
            supplierServices: this.supplierServices,
-    }); 
+    });
+    console.log(mata);
+    //New content
+
+    if(!(this.supplierInfo.get('portfolio').value))
+      {
+        alert("no portfolio");
+        //var kata = JSON.parse(mata);
+        //kata.portfolio = "";
+        //mata = JSON.stringify(kata);
+        console.log("new mata" + mata);
+        this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=withoutPortfolio', mata, headers).map(res => res.json()).subscribe(res =>{
+          if(res.status == 'Success')
+            {
+              alert("done without portfolio");
+              alert(res.msg);
+              this.navCtrl.push(CategoryPage);
+            }
+          else
+            {
+              alert(res.msg);
+            }
+        },
+     
+    )
+      }
+
+    //ends here
     //alert(mata); 
+    else
+    {
     const fileTransfer: TransferObject = this.transfer.create();
     let option1: FileUploadOptions = {
          fileKey:'file',
@@ -113,12 +142,26 @@ sendData()
     fileTransfer.upload(this.keys, 'http://10.0.2.2/signup-API/new1.php?rquest=supplierInfo',option1).then((data)=>{
       //alert(data.response);
       var res = data.response;
-        this.navCtrl.push(CategoryPage);
+      console.log(data.response); 
+      var stringResponse = JSON.parse(res);
+      if(stringResponse.status == 'Success')
+        {
+          this.navCtrl.push(CategoryPage);
+          console.log("congrats");
+        }
+      else
+        {
+          alert(stringResponse.msg);
+        }
+       console.log(typeof(stringResponse));
+        console.log(stringResponse);
+        //this.navCtrl.push(CategoryPage);
     },
     (err)=>{
       alert("failed to send");
     }
     );
+  }
 
 }
 

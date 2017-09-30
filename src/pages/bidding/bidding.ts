@@ -51,9 +51,9 @@ export class BiddingPage {
        biddingTerms: this.bidding.get('biddingTerms').value
      });  
      //alert(data);
-     this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
-      alert(res.msg);
-      alert(res.status);
+     this.http.post('http://localhost/signup-API/new1.php?rquest=postBidding', data, headers).map(res => res.json()).subscribe(res => {
+      //alert(res.msg);
+      //alert(res.status);
      this.navCtrl.push(DashboardPage);
      });
      
@@ -61,4 +61,16 @@ export class BiddingPage {
   });
   } 
 
+  alertMsg()
+  {
+    if(this.bidding.get('bidValue').value > this.maxrange)
+      {
+        let alers = this.alert.create({
+          title: 'Warning!',
+          subTitle: 'You have exceeded the price range provided by consumer',
+          buttons: ['Dismiss']
+        });
+        alers.present();
+      }
+  }
 }

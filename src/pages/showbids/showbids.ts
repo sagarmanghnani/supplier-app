@@ -57,10 +57,11 @@ export class ShowbidsPage {
         requestId: this.requestInfo.id1
       });
       
-      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=viewSuppBid', data,headers).map(res => res.json()).subscribe(res =>{
+      this.http.post('http://localhost/signup-API/new1.php?rquest=viewSuppBid', data,headers).map(res => res.json()).subscribe(res =>{
         if(res.status == "Success")
         {
           this.bidData = res.msg;
+          console.log(this.bidData);
           //doubt property of bidData is not accessible
           this.bidvalue = this.bidData.bidValue;
           this.bidterms = this.bidData.bidTerms;
@@ -98,7 +99,7 @@ export class ShowbidsPage {
               requestId: this.requestInfo.id1
             });
 
-            this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=deleteBid', data,headers).map(res => res.json()).subscribe(res =>{
+            this.http.post('http://localhost/signup-API/new1.php?rquest=deleteBid', data,headers).map(res => res.json()).subscribe(res =>{
               if(res.status == 'Success')
               {
                 let nav = this.app.getRootNav();

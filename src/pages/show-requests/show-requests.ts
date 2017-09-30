@@ -54,18 +54,43 @@ export class ShowRequestsPage {
         supplierId: this.logid
       });
 
-      this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=supplierCategory', data1,headers).map(res => res.json()).subscribe(res =>{
+      this.http.post('http://localhost/signup-API/new1.php?rquest=supplierCategory', data1,headers).map(res => res.json()).subscribe(res =>{
         if(res.status = "Success")
         {
           this.categoryId = res.msg;
           let data = JSON.stringify({
-          categoryid:this.categoryId
+          categoryid:this.categoryId,   
         });
         
         // next post request starts here
+        console.log(this.logid);
+        let data1 = JSON.stringify({
+          categoryid:this.categoryId,
+          supplierId:this.logid   
+        });
+            this.http.post('http://localhost/signup-API/new1.php?rquest=supplierRequests', data1,headers).map(res => res.json()).subscribe(res =>{
+              //sort function
+  
+              function compare(a,b)
+              {
+                if(a.bidStatus > b.bidStatus)
+                  {
+                    //A negative value if the first argument passed is less than the second argument.
+                    return -1;
+                  }
+                if(a.bidStatus < b.bidStatus)
+                  {
+                    //A positive value if the first argument is greater than the second argument.
+                    return 1;
+                  }
+                else
+                  {
+                    //Zero if the two arguments are equivalent.
+                    return 0;
+                  }
+              }
 
-            this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=supplierRequests', data,headers).map(res => res.json()).subscribe(res =>{
-              
+              //ends here
             if(res.status == 'Success')
             {
               var length = Object.keys(res.msg).length;
@@ -76,7 +101,10 @@ export class ShowRequestsPage {
               else
               {
                 this.data = true;
+                res.msg.sort(compare);
                 this.request = res.msg;
+                console.log(this.request);
+                
               }
             }
           },
@@ -95,6 +123,7 @@ export class ShowRequestsPage {
 
         
     });
+
   }
 
   

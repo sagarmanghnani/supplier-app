@@ -123,7 +123,7 @@ export class ProfileInfoPage {
 
    presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Modify your album',
+      title: 'Select Profile picture',
       buttons: [
         {
           text: 'From Gallery',

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>forgot</ion-title>
+    <ion-title>Forgot</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,6 +20,10 @@
 		</ion-card-header>
 		<ion-card-content>
 			Enter registered email address
+			<br>
+			<div *ngIf="error">
+				{{error}}
+			</div>
 			<br>
 			<form [formGroup] = "forgot">
 				<ion-list>

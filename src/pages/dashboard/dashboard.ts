@@ -25,15 +25,15 @@ export class DashboardPage {
     console.log('ionViewDidLoad DashboardPage');
   }
 
-  Category()
+  requestPage()
   {
     this.navCtrl.push(ShowRequestsPage);
   }
-
-  cat()
+  
+  /*categoryPage()
   {
     this.navCtrl.push(CategoryPage);
-  }
+  }*/
 
  
   LogOut()

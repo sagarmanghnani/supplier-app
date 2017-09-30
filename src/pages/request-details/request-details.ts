@@ -31,6 +31,7 @@ export class RequestDetailsPage {
   hasBid:any;
   supplierId:any;
   requestId:any;
+  bidClosed:boolean;
 
   ionViewWillEnter()
   {
@@ -52,17 +53,25 @@ export class RequestDetailsPage {
   this.maxrange = sep[1];
   this.supplierId = val;
   this.requestId = this.requirement.id1;
-
+  
   var headers = new Headers();
   headers.append('Content-Type', 'application/json');
-
   let data = JSON.stringify({
     supplierId:this.supplierId,
     requestId:this.requestId,
   });
   //alert(data);
-  this.http.post('http://10.0.2.2/signup-API/new1.php?rquest=checkBid', data,headers).map(res => res.json()).subscribe(res =>{
+  this.http.post('http://localhost/signup-API/new1.php?rquest=checkBid', data,headers).map(res => res.json()).subscribe(res =>{
     //alert(res.status);
+    if(this.requirement.bidStatus == 1)
+      {
+        this.bidClosed = true;
+      }
+    else
+      {
+        this.bidClosed = false;
+      }
+      
     if(res.status == 'Bided')
     {
       this.hasBid = true;

@@ -17,6 +17,10 @@
   <ion-grid>
   <ion-card>
     <br>
+    <div *ngIf = "bidClosed" text-center>
+      Bidding has been closed
+    </div>
+    <br >
   <ion-row>
     <ion-col text-center>
       Requirement Details
@@ -51,17 +55,17 @@
     Quantity :- {{requirement.quantity}}
   </ion-col>
   <br>
-  <ion-col offset-9>
+  <ion-col text-wrap offset-7>
     {{requirement.modifiedDate|date:'dd/MM/yyyy'}}
   </ion-col>
   </ion-card>
-<div *ngIf = "!hasBid">
+<div *ngIf = "!hasBid && !bidClosed">
   <button ion-button right round (click) = "bidDetails()">Bid</button>
 </div>
 
-<div *ngIf = "hasBid">
+<!-- <div *ngIf = "hasBid">
   <button ion-button right round>Show your Bid</button>
-</div>
+</div>-->
 </ion-grid>
 
 </ion-content>

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>dashboard</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,11 +15,11 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item (click) = "Category()"> Show Request </button>
+    <button ion-item (click) = "requestPage()"> Show Request </button>
     
     <button ion-item (click) = "LogOut()">LogOut</button>
 
-    <button ion-item (click) = "cat()">cat</button>
+    <!--<button ion-item (click) = "categoryPage()">Category</button>-->
   </ion-list>
 
 </ion-content>

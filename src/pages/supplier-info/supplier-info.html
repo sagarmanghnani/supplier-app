@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>supplierInfo</ion-title>
+    <ion-title>Supplier Info</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,22 +15,26 @@
 <ion-content padding>
 
 <ion-list>
+    <div *ngIf = "error">
+        {{error}}
+    </div>
     <form [formGroup] = "supplierInfo">
         <ion-slides>
-            <ion-slide>
+            <ion-slide>                
+                    
       <ion-item>
-          <ion-label floating>GST number</ion-label>
+          <ion-label floating>GST number*</ion-label>
           <ion-input type="text" formControlName = "gst" [class.invalid] = "!supplierInfo.controls.gst.valid && (supplierInfo.controls.gst.dirty)"></ion-input>
       </ion-item>
 `
 
 	  <ion-item>
-		  <ion-label floating>Company name</ion-label>
+		  <ion-label floating>Company name*</ion-label>
           <ion-input type="text" formControlName = "cname" [class.invalid] = "!supplierInfo.controls.cname.valid && (supplierInfo.controls.cname.dirty)"></ion-input>
       </ion-item>
 
 	  <ion-item>
-		  <ion-label floating> Address </ion-label>
+		  <ion-label floating> Address* </ion-label>
           <ion-input type="text" formControlName = "address" [class.invalid] = "!supplierInfo.controls.address.valid && (supplierInfo.controls.address.dirty)"></ion-input>
       </ion-item>
       
@@ -38,16 +42,20 @@
             </ion-slide>
 
             <ion-slide>
-
 	  <ion-item>
 		  <ion-label floating> Video link </ion-label>
           <ion-input type="text" formControlName = "vlink" [class.invalid] = "!supplierInfo.controls.vlink.valid && (supplierInfo.controls.vlink.dirty)"></ion-input>
       </ion-item>
 
-	  <ion-item>    
+	  <ion-item *ngIf = "upload != null">    
 		  <ion-label floating> Portfolio{{portfolio}}</ion-label>
-          <ion-input type="text" formControlName = "portfolio" ngDefaultControl [(ngModel)] = "upload" [class.invalid] = "!supplierInfo.controls.portfolio.valid && (supplierInfo.controls.portfolio.dirty)" disabled></ion-input>
+          <ion-input type="text" formControlName = "portfolio" ngDefaultControl [(ngModel)] = "upload" [class.invalid] = "!supplierInfo.controls.portfolio.valid" disabled></ion-input>
       </ion-item>
+
+      <ion-item *ngIf = "upload == null">    
+        <ion-label floating> Portfolio{{portfolio}}</ion-label>
+        <ion-input type="text" formControlName = "portfolio" [class.invalid] = "!supplierInfo.controls.portfolio.valid && (supplierInfo.controls.website.touched)" disabled></ion-input>
+    </ion-item>  
 	  <br>
 	  <div>
 		  <button ion-button round (click) = "getPortfolio()" >Upload portfolio</button>
@@ -59,6 +67,7 @@
       </ion-item>
 
 	  <ion-item>
+           
 		  <ion-label floating> Complaint phone number </ion-label>
           <ion-input type="number" formControlName = "complaint" [class.invalid] = "!supplierInfo.controls.complaint.valid && (supplierInfo.controls.complaint.dirty)">{{keys}}</ion-input>
       </ion-item>
@@ -70,7 +79,11 @@
 	  <br>
 	  <div>
 		  <button ion-button round (click) = "sendData()" [(disabled)] = "!supplierInfo.valid">Submit</button>
-	  </div>
+      </div>
+      
+     <div>
+         <button ion button (click) = "get()">get</button>
+     </div>
       </ion-slide>
         </ion-slides>
     </form>

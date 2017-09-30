@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>showRequests</ion-title>
+    <ion-title>Show Requests</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,9 +16,9 @@
 <ion-content padding>
 
    <ion-list class="lines" *ngIf = "data">
-     <button ion-item *ngFor = "let req of request" (click) = "requirementDetail(req)">
+     <button ion-item *ngFor = "let req of request" (click) = "requirementDetail(req)" [class.approved] = "this.req.bidStatus == 1" [class.reject] = "this.req.bidStatus == -1">
        <ion-row>
-         <ion-col>
+         <ion-col text-wrap>
            <h1>{{req.Title}}</h1>
          </ion-col>
        </ion-row>
@@ -34,19 +34,19 @@
        </ion-row>
 
        <ion-row>
-         <ion-col>
+         <ion-col text-wrap>
            Company Name:-{{req.companyName}}
          </ion-col>
        </ion-row>
 
        <ion-row>
-          <ion-col>
+          <ion-col text-wrap>
             {{req.sub_district}},{{req.district}}, {{req.state}}
          </ion-col>
        </ion-row>
 
        <ion-row>
-         <ion-col>
+         <ion-col text-wrap style="text-align:end">
           {{req.modifiedDate|date: 'dd/MM/yyyy'}}
          </ion-col>
        </ion-row>
